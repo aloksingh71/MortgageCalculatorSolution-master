@@ -47,7 +47,9 @@
         </div>
       </div>
       <div class="button-group">
-        <button type="button" class="go-back">Go Back</button>
+        <!-- Button to go back and blur the result section -->
+        <button type="button" class="go-back" (click)="goBack()">Go Back</button>
+        <!-- Button to submit the form and calculate the mortgage -->
         <button type="submit" class="next-step">Next Step</button>
       </div>
       <!-- Display error message if there is any -->
@@ -55,27 +57,28 @@
     </form>
   </div>
 
-  <div [ngClass]="{'blur': !submitted, 'calculation-results': true}">
+  <!-- Display the calculation results, blurred if not submitted -->
+  <div [ngClass]="{ 'blur': !submitted, 'calculation-results': true }">
     <h3>Your Mortgage Calculation</h3>
     <p>Here we will give you an estimate of your repayments and your ability to borrow</p>
     <!-- Display the calculated monthly payment -->
     <h2>€{{ monthlyPayment | number: '1.2-2' }} Per Month</h2>
     <div class="result-details">
       <div>
-        <h4>{{ repaymentPeriod }}</h4>
+        <h4>{{ displayedRepaymentPeriod }}</h4>
         <p>Years</p>
       </div>
       <div>
-        <h4>{{ (borrowingAmount / totalHouseholdIncome).toFixed(2) }}x</h4>
+        <h4>{{ (displayedBorrowingAmount / displayedTotalHouseholdIncome).toFixed(2) }}x</h4>
         <p>Years</p>
       </div>
       <div>
-        <h4>{{ ((borrowingAmount / purchasePrice) * 100).toFixed(0) }}%</h4>
+        <h4>{{ ((displayedBorrowingAmount / displayedPurchasePrice) * 100).toFixed(0) }}%</h4>
         <p>Loan</p>
       </div>
     </div>
     <!-- Display mortgage readiness based on the calculation -->
-    <div class="intelligence" [ngClass]="{'ready': mortgageReady, 'not-ready': !mortgageReady}">
+    <div class="intelligence" [ngClass]="{ 'ready': mortgageReady, 'not-ready': !mortgageReady }">
       <p *ngIf="mortgageReady">
         <span class="intelligence-icon">💡</span>
         Based on your answers so far, your repayment ability looks strong. It seems like you're mortgage ready!

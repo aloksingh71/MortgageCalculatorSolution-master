@@ -12,6 +12,14 @@ export class MortgageCalculatorComponent {
   totalHouseholdIncome: number = 0;
   depositAmount: number = 0;
   additionalFunding: number = 0;
+
+  displayedBorrowingAmount: number = 0;
+  displayedPurchasePrice: number = 0;
+  displayedRepaymentPeriod: number = 0;
+  displayedTotalHouseholdIncome: number = 0;
+  displayedDepositAmount: number = 0;
+  displayedAdditionalFunding: number = 0;
+
   monthlyPayment: number | null = null;
   mortgageReady: boolean = false;
   errorMessage: string = '';
@@ -20,6 +28,13 @@ export class MortgageCalculatorComponent {
   // Method to calculate the mortgage
   calculateMortgage() {
     if (this.validateInputs()) { // Validate inputs before calculation
+      this.displayedBorrowingAmount = this.borrowingAmount;
+      this.displayedPurchasePrice = this.purchasePrice;
+      this.displayedRepaymentPeriod = this.repaymentPeriod;
+      this.displayedTotalHouseholdIncome = this.totalHouseholdIncome;
+      this.displayedDepositAmount = this.depositAmount;
+      this.displayedAdditionalFunding = this.additionalFunding;
+
       const principal = this.borrowingAmount;
       const annualInterestRate = 0.05; 
       const monthlyInterestRate = annualInterestRate / 12;
@@ -48,5 +63,12 @@ export class MortgageCalculatorComponent {
   isMortgageReady(): boolean {
     const debtToIncomeRatio = this.borrowingAmount / this.totalHouseholdIncome;
     return debtToIncomeRatio < 4; 
+  }
+
+  // Method to handle the "Go Back" button click
+  goBack() {
+    this.submitted = false;
+    this.monthlyPayment = null; 
+    this.errorMessage = ''; 
   }
 }
