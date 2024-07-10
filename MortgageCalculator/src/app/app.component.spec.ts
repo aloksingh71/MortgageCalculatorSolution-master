@@ -4,6 +4,7 @@ import { MortgageCalculatorComponent } from './mortgage-calculator/mortgage-calc
 import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
+  // Set up the test environment before each test
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -13,10 +14,11 @@ describe('AppComponent', () => {
       imports: [FormsModule]
     }).compileComponents();
   });
-
+  // Test case to check if the app component is created successfully
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
+    // Assert that the component instance is created
     expect(app).toBeTruthy();
   });
 });

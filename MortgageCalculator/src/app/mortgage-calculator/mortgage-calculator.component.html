@@ -2,20 +2,24 @@
   <div class="form-container">
     <h1>Your Mortgage</h1>
     <h2>Calculate Your Mortgage</h2>
+    <!-- Form to input mortgage details -->
     <form (ngSubmit)="calculateMortgage()">
       <div class="form-row">
         <div class="form-group">
           <label for="borrowingAmount">Borrowing Amount <span>Required</span></label>
+          <!-- Input for borrowing amount -->
           <input type="number" id="borrowingAmount" [(ngModel)]="borrowingAmount" name="borrowingAmount" required />
         </div>
         <div class="form-group">
           <label for="purchasePrice">Purchase Price <span>Required</span></label>
+          <!-- Input for purchase price -->
           <input type="number" id="purchasePrice" [(ngModel)]="purchasePrice" name="purchasePrice" required />
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label for="repaymentPeriod">Repayment Period <span>Required</span></label>
+          <!-- Select for repayment period -->
           <select id="repaymentPeriod" [(ngModel)]="repaymentPeriod" name="repaymentPeriod" required>
             <option value="15">15 Years</option>
             <option value="20">20 Years</option>
@@ -26,16 +30,19 @@
         </div>
         <div class="form-group">
           <label for="totalHouseholdIncome">Total Household Income <span>Required</span></label>
+          <!-- Input for total household income -->
           <input type="number" id="totalHouseholdIncome" [(ngModel)]="totalHouseholdIncome" name="totalHouseholdIncome" required />
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label for="depositAmount">Deposit Amount <span>Required</span></label>
+          <!-- Input for deposit amount -->
           <input type="number" id="depositAmount" [(ngModel)]="depositAmount" name="depositAmount" required />
         </div>
         <div class="form-group">
           <label for="additionalFunding">Additional Funding <span>Optional</span></label>
+          <!-- Input for additional funding -->
           <input type="number" id="additionalFunding" [(ngModel)]="additionalFunding" name="additionalFunding" />
         </div>
       </div>
@@ -43,6 +50,7 @@
         <button type="button" class="go-back">Go Back</button>
         <button type="submit" class="next-step">Next Step</button>
       </div>
+      <!-- Display error message if there is any -->
       <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </form>
   </div>
@@ -50,6 +58,7 @@
   <div [ngClass]="{'blur': !submitted, 'calculation-results': true}">
     <h3>Your Mortgage Calculation</h3>
     <p>Here we will give you an estimate of your repayments and your ability to borrow</p>
+    <!-- Display the calculated monthly payment -->
     <h2>€{{ monthlyPayment | number: '1.2-2' }} Per Month</h2>
     <div class="result-details">
       <div>
@@ -65,6 +74,7 @@
         <p>Loan</p>
       </div>
     </div>
+    <!-- Display mortgage readiness based on the calculation -->
     <div class="intelligence" [ngClass]="{'ready': mortgageReady, 'not-ready': !mortgageReady}">
       <p *ngIf="mortgageReady">
         <span class="intelligence-icon">💡</span>

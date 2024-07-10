@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+// Decorator to define the component metadata
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
